@@ -12,6 +12,17 @@
 		C38D66081C335D7B00B7D273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C38D66061C335D7B00B7D273 /* Main.storyboard */; };
 		C38D660A1C335D7B00B7D273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D66091C335D7B00B7D273 /* Assets.xcassets */; };
 		C38D660D1C335D7B00B7D273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C38D660B1C335D7B00B7D273 /* LaunchScreen.storyboard */; };
+		C38D661A1C335E6700B7D273 /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66151C335E6700B7D273 /* UIImage+ColorImage.swift */; };
+		C38D661B1C335E6700B7D273 /* String+en:decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66161C335E6700B7D273 /* String+en:decode.swift */; };
+		C38D661C1C335E6700B7D273 /* LoadServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66171C335E6700B7D273 /* LoadServices.swift */; };
+		C38D661D1C335E6700B7D273 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66181C335E6700B7D273 /* UIImageView+DownloadImage.swift */; };
+		C38D66221C335E9800B7D273 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66201C335E9800B7D273 /* Generator.swift */; };
+		C38D66231C335E9800B7D273 /* MapNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66211C335E9800B7D273 /* MapNavi.swift */; };
+		C38D66251C335EA700B7D273 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66241C335EA700B7D273 /* Global.swift */; };
+		C38D66271C335EB500B7D273 /* userModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66261C335EB500B7D273 /* userModal.swift */; };
+		C38D662A1C335EBE00B7D273 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66281C335EBE00B7D273 /* Search.swift */; };
+		C38D662B1C335EBE00B7D273 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D66291C335EBE00B7D273 /* SearchResult.swift */; };
+		C38D662E1C335EF100B7D273 /* NormalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D662D1C335EF100B7D273 /* NormalTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +33,17 @@
 		C38D66091C335D7B00B7D273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C38D660C1C335D7B00B7D273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C38D660E1C335D7B00B7D273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C38D66151C335E6700B7D273 /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
+		C38D66161C335E6700B7D273 /* String+en:decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+en:decode.swift"; sourceTree = "<group>"; };
+		C38D66171C335E6700B7D273 /* LoadServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadServices.swift; sourceTree = "<group>"; };
+		C38D66181C335E6700B7D273 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		C38D66201C335E9800B7D273 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		C38D66211C335E9800B7D273 /* MapNavi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavi.swift; sourceTree = "<group>"; };
+		C38D66241C335EA700B7D273 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		C38D66261C335EB500B7D273 /* userModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userModal.swift; sourceTree = "<group>"; };
+		C38D66281C335EBE00B7D273 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		C38D66291C335EBE00B7D273 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		C38D662D1C335EF100B7D273 /* NormalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +78,47 @@
 			children = (
 				C38D66021C335D7B00B7D273 /* AppDelegate.swift */,
 				C38D66041C335D7B00B7D273 /* ViewController.swift */,
+				C38D662C1C335ED000B7D273 /* View */,
+				C38D661F1C335E7F00B7D273 /* Model */,
+				C38D66141C335DBC00B7D273 /* Extensions */,
 				C38D66061C335D7B00B7D273 /* Main.storyboard */,
 				C38D66091C335D7B00B7D273 /* Assets.xcassets */,
 				C38D660B1C335D7B00B7D273 /* LaunchScreen.storyboard */,
 				C38D660E1C335D7B00B7D273 /* Info.plist */,
 			);
 			path = 30ZF;
+			sourceTree = "<group>";
+		};
+		C38D66141C335DBC00B7D273 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C38D66151C335E6700B7D273 /* UIImage+ColorImage.swift */,
+				C38D66161C335E6700B7D273 /* String+en:decode.swift */,
+				C38D66181C335E6700B7D273 /* UIImageView+DownloadImage.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		C38D661F1C335E7F00B7D273 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C38D66281C335EBE00B7D273 /* Search.swift */,
+				C38D66291C335EBE00B7D273 /* SearchResult.swift */,
+				C38D66261C335EB500B7D273 /* userModal.swift */,
+				C38D66241C335EA700B7D273 /* Global.swift */,
+				C38D66201C335E9800B7D273 /* Generator.swift */,
+				C38D66211C335E9800B7D273 /* MapNavi.swift */,
+				C38D66171C335E6700B7D273 /* LoadServices.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C38D662C1C335ED000B7D273 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C38D662D1C335EF100B7D273 /* NormalTextField.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +192,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C38D661C1C335E6700B7D273 /* LoadServices.swift in Sources */,
+				C38D66221C335E9800B7D273 /* Generator.swift in Sources */,
+				C38D661B1C335E6700B7D273 /* String+en:decode.swift in Sources */,
+				C38D66271C335EB500B7D273 /* userModal.swift in Sources */,
+				C38D661D1C335E6700B7D273 /* UIImageView+DownloadImage.swift in Sources */,
+				C38D66231C335E9800B7D273 /* MapNavi.swift in Sources */,
+				C38D661A1C335E6700B7D273 /* UIImage+ColorImage.swift in Sources */,
+				C38D662B1C335EBE00B7D273 /* SearchResult.swift in Sources */,
 				C38D66051C335D7B00B7D273 /* ViewController.swift in Sources */,
+				C38D662A1C335EBE00B7D273 /* Search.swift in Sources */,
+				C38D66251C335EA700B7D273 /* Global.swift in Sources */,
+				C38D662E1C335EF100B7D273 /* NormalTextField.swift in Sources */,
 				C38D66031C335D7B00B7D273 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
