@@ -8,8 +8,25 @@
 
 import Foundation
 import UIKit
+import MapKit
+import AddressBook
+import Contacts
 
 class loadServices {
+    
+    class func useAppleMap(toLocation: SearchResult) {
+        
+        let toNumbers = (Double(toLocation.longitude)!, Double(toLocation.latitude)!)
+        let notBaidu = loadServices.changeToGaoDe(toNumbers)
+        let coor1 = CLLocationCoordinate2D(latitude: notBaidu.1, longitude: notBaidu.0)
+        
+        let placemark1 = MKPlacemark(coordinate: coor1, addressDictionary: [CNPostalAddressStreetKey: toLocation.name])
+        let toLocation = MKMapItem(placemark: placemark1)
+        
+        MKMapItem.openMapsWithItems([toLocation], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        
+        
+    }
     
     class func changeToGaoDe(location: (Double, Double)) -> (Double, Double) {
         
