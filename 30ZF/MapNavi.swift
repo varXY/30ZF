@@ -12,7 +12,6 @@ import MapKit
 //import AddressBook iOS 8 之前
 import Contacts
 
-<<<<<<< HEAD
 protocol MapNavi {
 	func goToMapApp(viewController: UIViewController, fromLocation: [Double], toLocation: [Double])
 	func useAppleMap(toLocation: [Double], locationName: String)
@@ -67,7 +66,7 @@ extension MapNavi {
 
 	}
 }
-=======
+
 //class MapNavi {
 //    
 //    func navigationInApp(name: String, userLocation: BMKUserLocation, toLocation: SearchResult) {
@@ -132,4 +131,3 @@ extension MapNavi {
 //        
 //    }
 //}
->>>>>>> origin/master

@@ -9,10 +9,9 @@
 import Foundation
 import UIKit
 import MapKit
-import AddressBook
+//import AddressBook
 import Contacts
 
-<<<<<<< HEAD
 protocol systemServices: AlertUser {
 	func call(viewController: UIViewController, number: String)
 	func sendText(number: String)
@@ -35,7 +34,7 @@ extension systemServices {
 	}
 
 }
-=======
+
 class loadServices {
     
     class func useAppleMap(toLocation: SearchResult) {
@@ -84,4 +83,3 @@ class loadServices {
     }
 
 }
->>>>>>> origin/master
