@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 extension UIImage {
-    
+
+	// 生成颜色图片
     class func imageWithColor(color: UIColor, rect: CGRect) -> UIImage {
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -23,4 +24,23 @@ extension UIImage {
         
         return image
     }
+
+	// 下载网络图片
+	class func imageWithURL(url: NSURL, done: (UIImage) -> Void) {
+
+		let session = NSURLSession.sharedSession()
+
+		session.downloadTaskWithURL(url, completionHandler: { url, response, error in
+			if error == nil && url != nil {
+				if let data = NSData(contentsOfURL: url!) {
+					if let image = UIImage(data: data) {
+						dispatch_async(dispatch_get_main_queue()) {
+							done(image)
+						}
+					}
+				}
+			}
+		})
+
+	}
 }

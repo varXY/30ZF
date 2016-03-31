@@ -11,28 +11,34 @@ import UIKit
 extension UIImageView {
 
 	func loadImageWithURl(url: NSURL) -> NSURLSessionDownloadTask {
+
+		// 下载完成之前，显示载入指示圈
+		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+		indicator.startAnimating()
+		indicator.frame = self.bounds
+		self.addSubview(indicator)
+
 		let session = NSURLSession.sharedSession()
 
 		let downloadTask = session.downloadTaskWithURL(url, completionHandler: { [weak self] url, response, error in
 			if error == nil && url != nil {
-                print(__FUNCTION__)
 				if let data = NSData(contentsOfURL: url!) {
 					if let image = UIImage(data: data) {
-                        print(__FUNCTION__)
 						dispatch_async(dispatch_get_main_queue()) {
 							if let strongSelf = self {
+								indicator.removeFromSuperview()
 								strongSelf.image = image
 							}
 						}
 					}
 				}
 			}
-		})
+			})
 
-		// After creating the download task you call resume() to start it, and then return the 
-		// NSURLSessionDownloadTask object to the caller. Why return it? That gives the app the opportunity  
+		// After creating the download task you call resume() to start it, and then return the
+		// NSURLSessionDownloadTask object to the caller. Why return it? That gives the app the opportunity
 		// to call cancel() on the download task.
-		
+
 		downloadTask.resume()
 		return downloadTask
 	}

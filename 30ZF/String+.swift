@@ -9,6 +9,19 @@
 import Foundation
 
 extension String {
+
+	// 获取本地化后的String
+	var localized: String! {
+		let localizedString = NSLocalizedString(self, comment: "")
+		return localizedString
+	}
+
+	// 前面加＋号，针对数字。
+	mutating func addPositiveMark() {
+		self = "+" + self
+	}
+
+	// 加密和解密URL
     func URLEncodedString() -> String? {
         let customAllowedSet =  NSCharacterSet.URLQueryAllowedCharacterSet()
         let escapedString = self.stringByAddingPercentEncodingWithAllowedCharacters(customAllowedSet)
@@ -19,6 +32,8 @@ extension String {
         let decodedString = self.stringByRemovingPercentEncoding
         return decodedString
     }
+
+	// 把.POST时的参数变成.GET时的一串字符
     static func queryStringFromParameters(parameters: Dictionary<String,String>) -> String? {
         if (parameters.count == 0)
         {

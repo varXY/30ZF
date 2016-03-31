@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class NormalTextField: UITextField {
+// 电工助手里的公式输入框。主要目的是让光标不离边界太近
+
+class NumberInputTextField: UITextField {
     
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
@@ -23,8 +25,8 @@ class NormalTextField: UITextField {
         return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
     }
     
-    func getTextFields(frame: CGRect) -> NormalTextField {
-        let textField = NormalTextField()
+    func getTextFields(frame: CGRect) -> NumberInputTextField {
+        let textField = NumberInputTextField()
         textField.frame = frame
         textField.layer.cornerRadius = 8
         textField.layer.borderWidth = 1.0

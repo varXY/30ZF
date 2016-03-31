@@ -9,13 +9,27 @@
 import Foundation
 import UIKit
 
+// 屏幕尺寸信息
+let ScreenBounds = UIScreen.mainScreen().bounds
+let ScreenWidth = ScreenBounds.width
+let ScreenHeight = ScreenBounds.height
+let BarHeight = UIApplication.sharedApplication().statusBarFrame.height
 
+// 日期和数字格式转换
 let dateFormatter: NSDateFormatter = {
 	let formatter = NSDateFormatter()
 	formatter.dateFormat = "dd/MM/yy, HH:mm"
 	return formatter
 	}()
 
+var priceFormatter: NSNumberFormatter = {
+	let pf = NSNumberFormatter()
+	pf.formatterBehavior = .Behavior10_4
+	pf.numberStyle = .CurrencyStyle
+	return pf
+}()
+
+// 延迟执行
 func delay(seconds seconds: Double, completion:()->()) {
 	let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
 
@@ -25,115 +39,25 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 }
 
+// 百度坐标转换成高德坐标
+func baiduToGaoDe(location: (Double, Double)) -> (Double, Double) {
 
-class Global {
-	
-	let size = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
-	let center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
-	let rowHeight = UIScreen.mainScreen().bounds.height / 12
+	var returnLocation: (Double, Double) = (0.0, 0.0)
+	let x_pi = 3.14159265358979324 * 3000.0 / 180.0
 
-	let CGGreenColor = Global.greenColor().CGColor
-	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
-	let CGWhiteColor = UIColor.whiteColor().CGColor
-	let CGBlackColor = UIColor.blackColor().CGColor
+	let x = location.0 - 0.0065
+	let y = location.1 - 0.006
+	let z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi)
+	let theta = atan2(y, x) - 0.000003 * cos(x * x_pi)
 
-	class func yellowColor() -> UIColor {
-		return UIColor(red: 255/255, green: 152/255, blue: 20/255, alpha: 1.0)
-	}
+	returnLocation.0 = z * cos(theta)
+	returnLocation.1 = z * sin(theta)
 
-	class func lightRedColor() -> UIColor {
-		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 0.7)
-	}
+	return returnLocation
+}
 
-	class func backgroundColor() -> UIColor {
-		return UIColor(red: 236/255, green: 235/255, blue: 243/255, alpha: 1.0)
-	}
-
-	class func lightGrayColor() -> UIColor {
-		return UIColor(red: 150/255, green: 154/255, blue: 152/255, alpha: 1.0)
-	}
-
-	class func greenColor() -> UIColor {
-		return UIColor(red: 30/255, green: 240/255, blue: 30/255, alpha: 1.0)
-	}
-    
-    class func baiduToGaode(location: (Double, Double)) -> (Double, Double) {
-        var poi2 = (0.0, 0.0)
-        let x = location.0 - 0.00005
-        let y = location.1 - 0.00006
-        poi2.0 = x
-        poi2.1 = y
-        return poi2
-    }
-
-	func buttonSize() -> CGSize {
-		var size = CGSize()
-
-		switch self.size.height {
-		case 480:
-			size = CGSize(width: 100, height: 100)
-		case 568:
-			size = CGSize(width: 100, height: 100)
-		case 667:
-			size = CGSize(width: 117, height: 117)
-		case 736:
-			size = CGSize(width: 129, height: 129)
-		default:
-			size = CGSize(width: 100, height: 100)
-		}
-
-		return size
-	}
-
-	func margin() -> CGFloat {
-		var marginY: CGFloat = 16
-
-		switch self.size.height {
-		case 480:
-			marginY = 16
-		case 568:
-			marginY = 38
-		case 667:
-			marginY = 50
-		case 736:
-			marginY = 59
-		default:
-			marginY = 12
-		}
-
-		return marginY
-	}
-
-	func testBigButtonSize() -> CGSize {
-		var buttonSize = CGSize()
-        
-		switch size.height {
-		case 480:
-			buttonSize = CGSize(width: round(568 * 0.264), height: round(568 * 0.264))
-        default:
-            buttonSize = CGSize(width: round(size.height * 0.264), height: round(size.height * 0.264))
-		}
-
-		return buttonSize
-	}
-
-	func testSmallButtonSize() -> CGSize {
-		var buttonSize = CGSize()
-
-		switch size.height {
-		case 480:
-			buttonSize = CGSize(width: 85, height: 85)
-		case 568:
-			buttonSize = CGSize(width: 85, height: 85)
-		case 667:
-			buttonSize = CGSize(width: 99.5, height: 99.5)
-		case 736:
-			buttonSize = CGSize(width: 110, height: 110)
-		default:
-			break
-		}
-
-		return buttonSize
-	}
+// 为AlertUser占位
+func doNoThing() {
 
 }
+
