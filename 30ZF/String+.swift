@@ -57,4 +57,12 @@ extension String {
         }
         return queryString
     }
+    
+    func toCGFloat() -> CGFloat? {
+        if let number = NSNumberFormatter().numberFromString(self) {
+            return CGFloat(number)
+        } else {
+            return nil
+        }
+    }
 }
