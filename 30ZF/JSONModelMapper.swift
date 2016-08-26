@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum ConvertError: ErrorType {
-    case InvalidJSON(errorMessage: String)
+enum ConvertError: Error {
+    case invalidJSON(errorMessage: String)
 }
 
-extension NSData {
+extension Data {
     func convertToModel<T: NSObject>() -> T? {
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions.MutableContainers)
+            let json = try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions.mutableContainers)
             let model = json => T.self
             return model
         } catch {
@@ -67,9 +67,9 @@ extension NSObject {
         return dict
     }
     
-    func convertToData() -> NSData? {
+    func convertToData() -> Data? {
         do {
-            let data = try NSJSONSerialization.dataWithJSONObject(self.convertToDictinary(), options: NSJSONWritingOptions.init(rawValue: 0))
+            let data = try JSONSerialization.data(withJSONObject: self.convertToDictinary(), options: JSONSerialization.WritingOptions.init(rawValue: 0))
             return data
         } catch {
             print("JSONSerializationError: \(error)")
@@ -78,11 +78,11 @@ extension NSObject {
     }
 }
 
-infix operator => {
-    precedence 160
-}
+//infix operator => {
+//    precedence 160
+//}
 
-func =><T: NSObject>(lhs: NSData, rhs: T.Type) -> T? {
+func =><T: NSObject>(lhs: Data, rhs: T.Type) -> T? {
     let model: T? = lhs.convertToModel()
     return model
 }

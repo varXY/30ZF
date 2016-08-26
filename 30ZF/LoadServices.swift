@@ -13,31 +13,31 @@ import MapKit
 import Contacts
 
 protocol systemServices: AlertUser {
-	func call(viewController: UIViewController, number: String)
-	func sendText(number: String)
+	func call(_ viewController: UIViewController, number: String)
+	func sendText(_ number: String)
 }
 
 extension systemServices {
 
-	func call(viewController: UIViewController, number: String) {
+	func call(_ viewController: UIViewController, number: String) {
 
 		func call() {
-			UIApplication.sharedApplication().openURL(NSURL(string: "tel://" + number)!)
+			UIApplication.shared.openURL(URL(string: "tel://" + number)!)
 		}
 
 		alertOfChoices([number, ""], actionTitle: ["呼叫", "取消"], actions: [call, doNoThing])
 
 	}
 
-	func sendText(number: String) {
-		UIApplication.sharedApplication().openURL(NSURL(string: "sms://" + number)!)
+	func sendText(_ number: String) {
+		UIApplication.shared.openURL(URL(string: "sms://" + number)!)
 	}
 
 }
 
 class loadServices {
     
-    class func useAppleMap(toLocation: SearchResult) {
+    class func useAppleMap(_ toLocation: SearchResult) {
         
         let toNumbers = (Double(toLocation.longitude)!, Double(toLocation.latitude)!)
         let notBaidu = loadServices.changeToGaoDe(toNumbers)
@@ -46,12 +46,12 @@ class loadServices {
         let placemark1 = MKPlacemark(coordinate: coor1, addressDictionary: [CNPostalAddressStreetKey: toLocation.name])
         let toLocation = MKMapItem(placemark: placemark1)
         
-        MKMapItem.openMapsWithItems([toLocation], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        MKMapItem.openMaps(with: [toLocation], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
         
         
     }
     
-    class func changeToGaoDe(location: (Double, Double)) -> (Double, Double) {
+    class func changeToGaoDe(_ location: (Double, Double)) -> (Double, Double) {
         
         var returnLocation: (Double, Double) = (0.0, 0.0)
         let x_pi = 3.14159265358979324 * 3000.0 / 180.0
@@ -67,19 +67,19 @@ class loadServices {
         return returnLocation
     }
     
-    class func call(viewController: UIViewController, number: String) {
-        let alert = UIAlertController(title: number, message: nil, preferredStyle: .Alert)
-        let action1 = UIAlertAction(title: "呼叫", style: .Default) { (_) -> Void in
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://" + number)!)
+    class func call(_ viewController: UIViewController, number: String) {
+        let alert = UIAlertController(title: number, message: nil, preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "呼叫", style: .default) { (_) -> Void in
+            UIApplication.shared.openURL(URL(string: "tel://" + number)!)
         }
-        let action2 = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        let action2 = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alert.addAction(action1)
         alert.addAction(action2)
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        viewController.present(alert, animated: true, completion: nil)
     }
     
-    class func sendText(number: String) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "sms://" + number)!)
+    class func sendText(_ number: String) {
+        UIApplication.shared.openURL(URL(string: "sms://" + number)!)
     }
 
 }

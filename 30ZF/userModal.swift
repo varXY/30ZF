@@ -19,7 +19,7 @@ class UserModal: NSObject {
     }
     
     func documentDiretory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         return paths[0]
     }
     
@@ -29,22 +29,22 @@ class UserModal: NSObject {
     
     func saveRecords() {
         let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeObject(users, forKey: "Users")
-        archiver.encodeInt32(showTimes, forKey: "ShowTimes")
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.encode(users, forKey: "Users")
+        archiver.encode(showTimes, forKey: "ShowTimes")
         archiver.finishEncoding()
-        data.writeToFile(dataFilePath(), atomically: true)
+        data.write(toFile: dataFilePath(), atomically: true)
     }
     
     func loadRecords() {
         let path = dataFilePath()
         
-        if NSFileManager.defaultManager().fileExistsAtPath(path) {
+        if FileManager.default.fileExists(atPath: path) {
             
-            if let data = NSData(contentsOfFile: path) {
-                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                users = unarchiver.decodeObjectForKey("Users") as! [SearchResult]
-                showTimes = unarchiver.decodeInt32ForKey("ShowTimes")
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+                users = unarchiver.decodeObject(forKey: "Users") as! [SearchResult]
+                showTimes = unarchiver.decodeInt32(forKey: "ShowTimes")
                 unarchiver.finishDecoding()
             }
             

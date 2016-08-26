@@ -23,8 +23,8 @@ extension String {
 
 	// 加密和解密URL
     func URLEncodedString() -> String? {
-        let customAllowedSet =  NSCharacterSet.URLQueryAllowedCharacterSet()
-        let escapedString = self.stringByAddingPercentEncodingWithAllowedCharacters(customAllowedSet)
+        let customAllowedSet =  CharacterSet.urlQueryAllowed
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters: customAllowedSet)
         return escapedString
     }
     
@@ -34,7 +34,7 @@ extension String {
     }
 
 	// 把.POST时的参数变成.GET时的一串字符
-    static func queryStringFromParameters(parameters: Dictionary<String,String>) -> String? {
+    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
         if (parameters.count == 0)
         {
             return nil
@@ -59,7 +59,7 @@ extension String {
     }
     
     func toCGFloat() -> CGFloat? {
-        if let number = NSNumberFormatter().numberFromString(self) {
+        if let number = NumberFormatter().number(from: self) {
             return CGFloat(number)
         } else {
             return nil

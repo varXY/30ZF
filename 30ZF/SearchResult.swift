@@ -10,7 +10,7 @@ import Foundation
 
 
 func < (lhs: SearchResult, rhs: SearchResult) -> Bool {
-	return lhs.name.localizedStandardCompare(rhs.name) == NSComparisonResult.OrderedAscending
+	return lhs.name.localizedStandardCompare(rhs.name) == ComparisonResult.orderedAscending
 }
 
 //"body": 1,
@@ -228,40 +228,40 @@ class SearchResult: NSObject, NSCoding {
 		super.init()
 	}
 
-	func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(username, forKey: "Username")
-		aCoder.encodeObject(name, forKey: "Name")
-		aCoder.encodeObject(mobile, forKey: "Mobile")
-		aCoder.encodeObject(image, forKey: "Image")
-		aCoder.encodeObject(storeURL, forKey: "StoreURL")
-		aCoder.encodeObject(obd_status, forKey: "Obd_status")
-		aCoder.encodeObject(huanxinid, forKey: "Huanxinid")
-		aCoder.encodeObject(chexing, forKey: "Chexing")
-		aCoder.encodeObject(groupid, forKey: "Groupid")
-		aCoder.encodeObject(me, forKey: "Me")
-		aCoder.encodeObject(typename, forKey: "Typename")
-		aCoder.encodeObject(distance, forKey: "Distance")
-		aCoder.encodeObject(longitude, forKey: "Longitude")
-		aCoder.encodeObject(latitude, forKey: "Latitude")
-		aCoder.encodeObject(friends, forKey: "Friends")
+	func encode(with aCoder: NSCoder) {
+		aCoder.encode(username, forKey: "Username")
+		aCoder.encode(name, forKey: "Name")
+		aCoder.encode(mobile, forKey: "Mobile")
+		aCoder.encode(image, forKey: "Image")
+		aCoder.encode(storeURL, forKey: "StoreURL")
+		aCoder.encode(obd_status, forKey: "Obd_status")
+		aCoder.encode(huanxinid, forKey: "Huanxinid")
+		aCoder.encode(chexing, forKey: "Chexing")
+		aCoder.encode(groupid, forKey: "Groupid")
+		aCoder.encode(me, forKey: "Me")
+		aCoder.encode(typename, forKey: "Typename")
+		aCoder.encode(distance, forKey: "Distance")
+		aCoder.encode(longitude, forKey: "Longitude")
+		aCoder.encode(latitude, forKey: "Latitude")
+		aCoder.encode(friends, forKey: "Friends")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		username = aDecoder.decodeObjectForKey("Username") as! String
-		name = aDecoder.decodeObjectForKey("Name") as! String
-		mobile = aDecoder.decodeObjectForKey("Mobile") as! String
-		image = aDecoder.decodeObjectForKey("Image") as! String
-		storeURL = aDecoder.decodeObjectForKey("StoreURL") as! String
-		obd_status = aDecoder.decodeObjectForKey("Obd_status") as! String
-		huanxinid = aDecoder.decodeObjectForKey("Huanxinid") as! String
-		chexing = aDecoder.decodeObjectForKey("Chexing") as! String
-		groupid = aDecoder.decodeObjectForKey("Groupid") as! String
-		me = aDecoder.decodeObjectForKey("Me") as! String
-		typename = aDecoder.decodeObjectForKey("Typename") as! String
-		distance = aDecoder.decodeObjectForKey("Distance") as! String
-		longitude = aDecoder.decodeObjectForKey("Longitude") as! String
-		latitude = aDecoder.decodeObjectForKey("Latitude") as! String
-		friends = aDecoder.decodeObjectForKey("Friends") as! [String]
+		username = aDecoder.decodeObject(forKey: "Username") as! String
+		name = aDecoder.decodeObject(forKey: "Name") as! String
+		mobile = aDecoder.decodeObject(forKey: "Mobile") as! String
+		image = aDecoder.decodeObject(forKey: "Image") as! String
+		storeURL = aDecoder.decodeObject(forKey: "StoreURL") as! String
+		obd_status = aDecoder.decodeObject(forKey: "Obd_status") as! String
+		huanxinid = aDecoder.decodeObject(forKey: "Huanxinid") as! String
+		chexing = aDecoder.decodeObject(forKey: "Chexing") as! String
+		groupid = aDecoder.decodeObject(forKey: "Groupid") as! String
+		me = aDecoder.decodeObject(forKey: "Me") as! String
+		typename = aDecoder.decodeObject(forKey: "Typename") as! String
+		distance = aDecoder.decodeObject(forKey: "Distance") as! String
+		longitude = aDecoder.decodeObject(forKey: "Longitude") as! String
+		latitude = aDecoder.decodeObject(forKey: "Latitude") as! String
+		friends = aDecoder.decodeObject(forKey: "Friends") as! [String]
 		super.init()
 	}
 

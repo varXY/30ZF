@@ -43,53 +43,53 @@ struct SearchInfo {
 class Search {
 
 	enum State {
-		case NotSearchedYet
-		case Loading
-		case NoResults
-		case Results([AnyObject])
+		case notSearchedYet
+		case loading
+		case noResults
+		case results([AnyObject])
 	}
 
-	private(set) var state: State = .NotSearchedYet
-	private var dataTask: NSURLSessionDataTask? = nil
+	fileprivate(set) var state: State = .notSearchedYet
+	fileprivate var dataTask: URLSessionDataTask? = nil
 
 
-	class func performSearchForText(searchInfo: SearchInfo, completion: SearchDone) {
+	class func performSearchForText(_ searchInfo: SearchInfo, completion: SearchDone) {
 		let search = Search()
 
 		search.dataTask?.cancel()
 
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-		search.state = .Loading
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
+		search.state = .loading
 
 		let url = search.urlWithSearchText(searchInfo)
 		print(url)
-		let session = NSURLSession.sharedSession()
-		search.dataTask = session.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+		let session = URLSession.shared
+		search.dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
 
-			search.state = .NotSearchedYet
+			search.state = .notSearchedYet
 
 			if let error = error {
-				if error.code == -999 { return }
-			} else if let httpResponse = response as? NSHTTPURLResponse {
+				if error._code == -999 { return }
+			} else if let httpResponse = response as? HTTPURLResponse {
 				if httpResponse.statusCode == 200 {
 					if let dictionary = search.parseJOSN(data!) {
 						let searchResults = search.parseDictionary(searchInfo.typeName, dictionary: dictionary)
 						if searchResults.isEmpty {
-							search.state = .NoResults
+							search.state = .noResults
 						} else {
-							search.state = .Results(searchResults)
+							search.state = .results(searchResults)
 						}
 					} else if let array = search.parseJOSN_1(data!) {
 						let results = array.flatMap( { $0 => Product_catID.self })
-						search.state = .Results(results)
+						search.state = .results(results)
 					}
 				} else {
 					print(httpResponse.statusCode)
 				}
 			}
 
-			dispatch_async(dispatch_get_main_queue()) {
-				UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+			DispatchQueue.main.async {
+				UIApplication.shared.isNetworkActivityIndicatorVisible = false
 				completion(search)
 			}
 		})
@@ -99,30 +99,30 @@ class Search {
 	}
 
 
-	func performSearchForText(searchInfo: SearchInfo, completion: SearchComplete) {
+	func performSearchForText(_ searchInfo: SearchInfo, completion: SearchComplete) {
 		dataTask?.cancel()
 
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-		state = .Loading
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
+		state = .loading
 
 		let url = urlWithSearchText(searchInfo)
 		print(url)
-		let session = NSURLSession.sharedSession()
-		dataTask = session.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+		let session = URLSession.shared
+		dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
 
-			self.state = .NotSearchedYet
+			self.state = .notSearchedYet
 			var success = false
 
 			if let error = error {
-				if error.code == -999 { return }
-			} else if let httpResponse = response as? NSHTTPURLResponse {
+				if error._code == -999 { return }
+			} else if let httpResponse = response as? HTTPURLResponse {
 				if httpResponse.statusCode == 200 {
 					if let dictionary = self.parseJOSN(data!) {
 						let searchResults = self.parseDictionary(searchInfo.typeName, dictionary: dictionary)
 						if searchResults.isEmpty {
-							self.state = .NoResults
+							self.state = .noResults
 						} else {
-							self.state = .Results(searchResults)
+							self.state = .results(searchResults)
 						}
 						success = true
 					}
@@ -131,8 +131,8 @@ class Search {
 				}
 			}
 
-			dispatch_async(dispatch_get_main_queue()) {
-				UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+			DispatchQueue.main.async {
+				UIApplication.shared.isNetworkActivityIndicatorVisible = false
 				completion(success)
 			}
 		})
@@ -143,9 +143,9 @@ class Search {
 
 	// MARK: - Networking
 
-	private func urlWithSearchText(searchInfo: SearchInfo) -> NSURL {
+	fileprivate func urlWithSearchText(_ searchInfo: SearchInfo) -> URL {
 		var urlString = ""
-		var url = NSURL()
+		var url = URL()
 
 		switch searchInfo.typeName {
 		case "member":
@@ -206,14 +206,14 @@ class Search {
 			break
 		}
 
-		url = NSURL(string: urlString)!
+		url = URL(string: urlString)!
 		return url
 	}
 
-	private func parseJOSN(data: NSData) -> [String: AnyObject]?  {
+	fileprivate func parseJOSN(_ data: Data) -> [String: AnyObject]?  {
 
 		do {
-			let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject]
+			let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String: AnyObject]
 			return json
 		} catch let error as NSError {
 			print("JSON Error: \(error)")
@@ -224,10 +224,10 @@ class Search {
 		return nil
 	}
 
-	private func parseJOSN_1(data: NSData) -> NSArray?  {
+	fileprivate func parseJOSN_1(_ data: Data) -> NSArray?  {
 
 		do {
-			let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? NSArray
+			let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSArray
 			return json
 		} catch let error as NSError {
 			print("JSON Error: \(error)")
@@ -240,7 +240,7 @@ class Search {
 
 	// MARK: - ParseDictionary
 
-	private func parseDictionary(type: String, dictionary: [String: AnyObject]) -> [AnyObject] {
+	fileprivate func parseDictionary(_ type: String, dictionary: [String: AnyObject]) -> [AnyObject] {
 
 		var searchResults = [SearchResult]()
 		var CSResults = [CSResult]()

@@ -11,8 +11,8 @@ import Foundation
 extension Array {
 
 	// 批量删除数字中的元素
-	mutating func removeAtIndexes(incs: [Int]) {
-		incs.sort(>).forEach { removeAtIndex($0) }
+	mutating func removeAtIndexes(_ incs: [Int]) {
+		incs.sorted(by: >).forEach { remove(at: $0) }
 	}
 
 }

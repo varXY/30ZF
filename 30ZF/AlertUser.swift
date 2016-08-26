@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 
 protocol AlertUser {
-	func alertOfChoices(titleAndMessage: [String], actionTitle: [String], actions: [() -> ()])
+	func alertOfChoices(_ titleAndMessage: [String], actionTitle: [String], actions: [() -> ()])
 }
 
 extension AlertUser where Self: UIViewController {
 
-	func alertOfChoices(titleAndMessage: [String], actionTitle: [String], actions: [() -> ()]) {
+	func alertOfChoices(_ titleAndMessage: [String], actionTitle: [String], actions: [() -> ()]) {
 		let title: String? = titleAndMessage[0] == "" ? nil : titleAndMessage[0]
 		let message: String? = titleAndMessage[1] == "" ? nil : titleAndMessage[1]
-		let alertVC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+		let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
 		var index = 0
 		repeat {
-			let action = UIAlertAction(title: actionTitle[index], style: .Default) { (_) in
+			let action = UIAlertAction(title: actionTitle[index], style: .default) { (_) in
 				if actions.count != 0 { actions[index]() }
 			}
 			alertVC.addAction(action)
 			index += 1
 		} while index < actionTitle.count - 1
 
-		self.presentViewController(alertVC, animated: true, completion: nil)
+		self.present(alertVC, animated: true, completion: nil)
 	}
 }

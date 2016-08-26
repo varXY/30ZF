@@ -10,37 +10,37 @@ import Foundation
 import UIKit
 
 // 屏幕尺寸信息
-let ScreenBounds = UIScreen.mainScreen().bounds
+let ScreenBounds = UIScreen.main.bounds
 let ScreenWidth = ScreenBounds.width
 let ScreenHeight = ScreenBounds.height
-let BarHeight = UIApplication.sharedApplication().statusBarFrame.height
+let BarHeight = UIApplication.shared.statusBarFrame.height
 
 // 日期和数字格式转换
-let dateFormatter: NSDateFormatter = {
-	let formatter = NSDateFormatter()
+let dateFormatter: DateFormatter = {
+	let formatter = DateFormatter()
 	formatter.dateFormat = "dd/MM/yy, HH:mm"
 	return formatter
 	}()
 
-var priceFormatter: NSNumberFormatter = {
-	let pf = NSNumberFormatter()
-	pf.formatterBehavior = .Behavior10_4
-	pf.numberStyle = .CurrencyStyle
+var priceFormatter: NumberFormatter = {
+	let pf = NumberFormatter()
+	pf.formatterBehavior = .behavior10_4
+	pf.numberStyle = .currency
 	return pf
 }()
 
 // 延迟执行
-func delay(seconds seconds: Double, completion:()->()) {
-	let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
+func delay(seconds: Double, completion:@escaping ()->()) {
+	let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
 
-	dispatch_after(popTime, dispatch_get_main_queue()) {
+	DispatchQueue.main.asyncAfter(deadline: popTime) {
 		completion()
 	}
 
 }
 
 // 百度坐标转换成高德坐标
-func baiduToGaoDe(location: (Double, Double)) -> (Double, Double) {
+func baiduToGaoDe(_ location: (Double, Double)) -> (Double, Double) {
 
 	var returnLocation: (Double, Double) = (0.0, 0.0)
 	let x_pi = 3.14159265358979324 * 3000.0 / 180.0

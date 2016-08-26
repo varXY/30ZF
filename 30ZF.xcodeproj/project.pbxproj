@@ -1,4 +1,3 @@
-
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
@@ -183,7 +182,6 @@
 			name = Struct;
 			sourceTree = "<group>";
 		};
-
 		C38D65F61C335D7A00B7D273 = {
 			isa = PBXGroup;
 			children = (
@@ -205,14 +203,13 @@
 			children = (
 				C38D66021C335D7B00B7D273 /* AppDelegate.swift */,
 				C38D66241C335EA700B7D273 /* Global.swift */,
+				C38D66041C335D7B00B7D273 /* ViewController.swift */,
 				313B4F8E1CACCC2600AB4EF6 /* Struct */,
 				313B4F8D1CACCC0B00AB4EF6 /* Class */,
 				313B4F8C1CACC6D900AB4EF6 /* NetWorking */,
 				313B4F6A1CACB6F400AB4EF6 /* Supporting File */,
 				313B4F691CACB6C300AB4EF6 /* Storyboard */,
 				313B4F681CACB69B00AB4EF6 /* Assets */,
-				C38D66041C335D7B00B7D273 /* ViewController.swift */,
-				C37BDEFA1C44D2E000917F7D /* AshKit */,
 				C38D662C1C335ED000B7D273 /* View */,
 				C38D661F1C335E7F00B7D273 /* Protocol */,
 				C38D66141C335DBC00B7D273 /* Extension */,
@@ -284,11 +281,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = myname;
 				TargetAttributes = {
 					C38D65FE1C335D7A00B7D273 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -398,8 +396,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -442,8 +442,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -462,6 +464,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -477,6 +480,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "30ZF/30ZF-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -490,6 +494,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "myname.-0ZF";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "30ZF/30ZF-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
